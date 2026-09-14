@@ -49,3 +49,20 @@ Route::middleware(['auth', 'role:admin,kasir'])->group(function () {
     Route::get('/pos', [PosController::class, 'index'])->name('pos.index');
     Route::post('/pos', [PosController::class, 'store'])->name('pos.store');
 });
+
+use App\Http\Controllers\UserController; 
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::resource('/users', UserController::class);
+    
+});
+
+Route::get('/index', function () {
+    $posts = [
+        (object)['title' => 'belajar laravel', 'content' => true],
+        (object)['title' => 'belajar vue', 'content' => true],
+        (object)['title' => 'belajar react', 'content' => true],
+    ];
+    return view('posts.index', compact('posts'));
+});
+
