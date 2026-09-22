@@ -66,3 +66,6 @@ Route::get('/index', function () {
     return view('posts.index', compact('posts'));
 });
 
+Route::get('/pos/history', function () {
+    return 'Halaman Riwayat Transaksi Kasir';
+})->name('pos.history');
